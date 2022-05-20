@@ -1,0 +1,18 @@
+{
+  "driverInfos": [{
+    "name": "mysql",
+    "description": "mysql数据源配置",
+    "driver": "com.mysql.cj.jdbc.Driver",
+    "urlTemplate": "jdbc:mysql://${ip}:${port}/${database}?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2b8"
+  }, {
+    "name": "mssql",
+    "description": "sql server数据源配置",
+    "driver": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+    "urlTemplate": "jdbc:sqlserver://${ip}:${port};databaseName=${database}"
+  }, {
+    "name": "oracle",
+    "description": "oracle数据源配置",
+    "driver": "oracle.jdbc.driver.OracleDriver",
+    "urlTemplate": "jdbc:oracle:thin:@${ip}:${port}:${database}"
+  }]
+}

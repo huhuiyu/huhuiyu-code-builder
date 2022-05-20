@@ -1,0 +1,10 @@
+buildscript {
+  repositories {
+    // 使用本地仓库（就是gradle-user-home配置的文件夹，已经下载过的jar就不会再下载）
+    mavenLocal()
+    // 使用阿里的maven仓库（避免去国外的地址下载，可以加快下载速度）
+    maven {url 'https://maven.aliyun.com/nexus/content/groups/public/'}
+    // 使用官方maven仓库
+    mavenCentral()
+  }
+}

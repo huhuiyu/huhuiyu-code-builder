@@ -1,0 +1,46 @@
+// 插件配置
+plugins {
+  // java开发插件
+  id 'java'
+  id 'java-library'
+  // eclipse开发插件（会自动配置eclipse）
+  id 'eclipse'
+}
+
+repositories {
+  // 使用本地仓库
+  mavenLocal()
+  //使用阿里的maven仓库（避免去国外的地址下载，可以加快下载速度）
+  maven {url 'https://maven.aliyun.com/nexus/content/groups/public/'}
+  // 使用官方maven仓库
+  mavenCentral()
+}
+
+// 版本号
+version = '1.0.0'
+
+// 代码编译等级
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+// 源码和javadoc编码设置
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+// 项目依赖
+dependencies {
+  // slf4j日志
+  implementation('org.slf4j:slf4j-api:1.7.25')
+  // logback日志
+  implementation('ch.qos.logback:logback-classic:1.2.3')
+  // beanutils
+  implementation('commons-beanutils:commons-beanutils:1.9.3')
+  // jackson-json解析
+  implementation('com.fasterxml.jackson.core:jackson-databind:2.11.0')
+  // xstream流式xml
+  implementation('com.thoughtworks.xstream:xstream:1.4.10')
+  // freemarker
+  implementation('org.freemarker:freemarker:2.3.23')
+  
+  // 测试依赖
+  testImplementation('mysql:mysql-connector-java:8.0.12')
+}

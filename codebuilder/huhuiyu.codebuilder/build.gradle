@@ -1,0 +1,37 @@
+// 插件配置
+plugins {
+  // java开发插件
+  id 'java'
+  id 'java-library'
+  // eclipse开发插件（会自动配置eclipse）
+  id 'eclipse'
+}
+
+repositories {
+  // 使用本地仓库
+  mavenLocal()
+  //使用阿里的maven仓库（避免去国外的地址下载，可以加快下载速度）
+  maven {url 'https://maven.aliyun.com/nexus/content/groups/public/'}
+  // 使用官方maven仓库
+  mavenCentral()
+}
+
+// 版本号
+version = '1.0.0'
+
+// 代码编译等级
+sourceCompatibility = '17'
+targetCompatibility = '17'
+
+// 源码和javadoc编码设置
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+// 项目依赖
+dependencies {
+  // jdbc驱动
+  implementation('mysql:mysql-connector-java:8.0.12')
+  implementation('com.microsoft.sqlserver:mssql-jdbc:7.0.0.jre8')
+  
+  implementation project(':huhuiyu.api')
+}
+
