@@ -28,8 +28,8 @@ plugins {
 }
 
 // 代码编译等级
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+sourceCompatibility = '17'
+targetCompatibility = '17'
 
 // 源码和javadoc编码设置
 [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
