@@ -102,14 +102,14 @@ public abstract class BaseSpringBootProjectFrame extends JFrame implements Actio
 
   private void setTestDefault() {
 
-    tfProjectName.setText("springboot_template");
-    tfPackageName.setText("top.huhuiyu.springboot.template");
+    tfProjectName.setText("teach_manage_service");
+    tfPackageName.setText("top.huhuiyu.teach_manage");
     tfAuthor.setText("胡辉煜");
     tfIp.setText("mysql.huhuiyu.top");
     tfPort.setText("3306");
     tfUsername.setText("test");
     tfPassword.setText("User4-test");
-    tfDatabase.setText("springboot_template");
+    tfDatabase.setText("db_teach_manage_service_develop");
 
     // tfProjectName.setText("teach_project_service");
     // tfPackageName.setText("top.huhuiyu.teachproject");
@@ -119,6 +119,15 @@ public abstract class BaseSpringBootProjectFrame extends JFrame implements Actio
     // tfUsername.setText("teach_project");
     // tfPassword.setText("user4_db_teach_project");
     // tfDatabase.setText("db_teach_project");
+
+    // tfProjectName.setText("springboot_template");
+    // tfPackageName.setText("top.huhuiyu.springboot.template");
+    // tfAuthor.setText("胡辉煜");
+    // tfIp.setText("mysql.huhuiyu.top");
+    // tfPort.setText("3306");
+    // tfUsername.setText("test");
+    // tfPassword.setText("User4-test");
+    // tfDatabase.setText("springboot_template");
 
     // tfProjectName.setText("huhuiyu.teach.service");
     // tfPackageName.setText("top.huhuiyu.teachservice");

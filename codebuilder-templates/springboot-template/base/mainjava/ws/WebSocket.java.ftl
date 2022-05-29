@@ -37,12 +37,27 @@ public class WebSocket {
   // app类型
   public static final String APP_ECHO = "echo";
   public static final String APP_CHAT = "chat";
-  // 消息类型
+  /**
+   * 消息类型echo
+   */
   public static final String TYPE_ECHO = "echo";
+  /**
+   * 消息类型chat
+   */
   public static final String TYPE_CHAT = "chat";
+  /**
+   * 消息类型timestamp
+   */
   public static final String TYPE_TIMESTAMP = "timestamp";
-  // 订阅channel类型
+  /**
+   * 订阅channel类型
+   */
   public static final String CHANNEL_CHAT = "chat";
+
+  /**
+   * 时间戳回应标识特别字符串
+   */
+  public static final String TIMESTAMP_RESPONSE = "teach_project_service_timestamp";
 
   private static final Map<String, BaseProcessor> PROCESSORM_MAP = new HashMap<>();
 
@@ -94,19 +109,10 @@ public class WebSocket {
       webSocketService.sendMessage(session, JsonUtil.stringify(BaseWebSocketResult.getFailInfo("无效的请求路径")));
       return;
     }
-    Exception jsonError = null;
-    try {
-      // 处理心跳
-      BaseParameter parameter = JsonUtil.parse(message, BaseParameter.class);
-      if (BaseParameter.ACTION_TIMESTAMP.equals(parameter.getAction())) {
-        log.debug("收到时间戳回应消息");
-        return;
-      }
-    } catch (Exception ex) {
-      jsonError = ex;
-    }
-    if (jsonError != null) {
-      log.debug("处理参数发生异常:{}", jsonError.getMessage());
+    // 时间戳回应消息
+    if (TIMESTAMP_RESPONSE.equals(message)) {
+      log.debug("收到时间戳回应消息，无需处理");
+      return;
     }
     // 继续流程
     PROCESSORM_MAP.get(app).onMessage(message, session);
@@ -120,3 +126,4 @@ public class WebSocket {
     log.error("onError:", error);
   }
 }
+
