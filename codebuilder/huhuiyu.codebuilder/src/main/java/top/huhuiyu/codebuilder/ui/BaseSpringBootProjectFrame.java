@@ -89,8 +89,6 @@ public abstract class BaseSpringBootProjectFrame extends JFrame implements Actio
     jfc.setMultiSelectionEnabled(false);
     btnBrowser.addActionListener(this);
     btnBuild.addActionListener(this);
-    // 设置测试用默认值
-    setTestDefault();
     // 启动=================================================
     FrameUtil.setEnterToFocus(this);
     FrameUtil.setComponentsFont(gbp, JComponent.class, new Font(null, Font.BOLD, 18));
@@ -100,45 +98,29 @@ public abstract class BaseSpringBootProjectFrame extends JFrame implements Actio
     this.setVisible(true);
   }
 
-  private void setTestDefault() {
-
-    tfProjectName.setText("teach_manage_service");
-    tfPackageName.setText("top.huhuiyu.teach_manage");
-    tfAuthor.setText("胡辉煜");
-    tfIp.setText("mysql.huhuiyu.top");
-    tfPort.setText("3306");
-    tfUsername.setText("test");
-    tfPassword.setText("User4-test");
-    tfDatabase.setText("db_teach_manage_service_develop");
-
-    // tfProjectName.setText("teach_project_service");
-    // tfPackageName.setText("top.huhuiyu.teachproject");
-    // tfAuthor.setText("胡辉煜");
-    // tfIp.setText("mysql.huhuiyu.top");
-    // tfPort.setText("3306");
-    // tfUsername.setText("teach_project");
-    // tfPassword.setText("user4_db_teach_project");
-    // tfDatabase.setText("db_teach_project");
-
-    // tfProjectName.setText("springboot_template");
-    // tfPackageName.setText("top.huhuiyu.springboot.template");
-    // tfAuthor.setText("胡辉煜");
-    // tfIp.setText("mysql.huhuiyu.top");
-    // tfPort.setText("3306");
-    // tfUsername.setText("test");
-    // tfPassword.setText("User4-test");
-    // tfDatabase.setText("springboot_template");
-
-    // tfProjectName.setText("huhuiyu.teach.service");
-    // tfPackageName.setText("top.huhuiyu.teachservice");
-    // tfAuthor.setText("胡辉煜");
-    // tfIp.setText("数据库ip地址");
-    // tfPort.setText("数据库端口");
-    // tfUsername.setText("数据库用户名");
-    // tfPassword.setText("数据库密码");
-    // tfDatabase.setText("数据库名称");
-
-    tfOutputDir.setText("d:\\output");
+  /**
+   * 设置默认信息
+   * 
+   * @param project     项目名称
+   * @param packageName 基础包名称
+   * @param author      作者
+   * @param ip          数据库ip
+   * @param port        数据库端口
+   * @param username    数据库用户名
+   * @param password    数据库密码
+   * @param database    数据库名称
+   * @param outputDir   项目输出目录
+   */
+  public void setDefaultInfo(String project, String packageName, String author, String ip, String port, String username, String password, String database, String outputDir) {
+    tfProjectName.setText(project);
+    tfPackageName.setText(packageName);
+    tfAuthor.setText(author);
+    tfIp.setText(ip);
+    tfPort.setText(port);
+    tfUsername.setText(username);
+    tfPassword.setText(password);
+    tfDatabase.setText(database);
+    tfOutputDir.setText(outputDir);
   }
 
   private void ui() {
