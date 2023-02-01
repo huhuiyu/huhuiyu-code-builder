@@ -1,10 +1,10 @@
 package ${builderUtil.getSubPackage("service")};
 
 import ${builderUtil.getSubPackage("base")}.BaseDataResult;
+import ${builderUtil.getSubPackage("base")}.BaseListResult;
 import ${builderUtil.getSubPackage("base")}.BaseResult;
 import ${builderUtil.getSubPackage("entity")}.PageBean;
 import ${builderUtil.getSubPackage("entity")}.${builderUtil.getClassName(tableInfo)};
-import ${builderUtil.getSubPackage("message")}.${builderUtil.getClassName(tableInfo)}Message;
 
 /**
  * ${builderUtil.getClassName(tableInfo)}的Service
@@ -57,6 +57,6 @@ public interface ${builderUtil.getClassName(tableInfo)}Service {
    * @return 分页查询${builderUtil.getClassName(tableInfo)}信息的结果
    * @throws Exception 处理发生错误
    */
-  ${builderUtil.getClassName(tableInfo)}Message queryAll(PageBean pageBean, ${builderUtil.getClassName(tableInfo)} ${builderUtil.getTableFieldName(tableInfo)}) throws Exception;
+  BaseListResult<${builderUtil.getClassName(tableInfo)}> queryAll(PageBean pageBean, ${builderUtil.getClassName(tableInfo)} ${builderUtil.getTableFieldName(tableInfo)}) throws Exception;
 
 }

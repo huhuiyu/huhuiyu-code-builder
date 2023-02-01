@@ -9,11 +9,11 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import ${builderUtil.getSubPackage("base")}.BaseDataResult;
+import ${builderUtil.getSubPackage("base")}.BaseListResult;
 import ${builderUtil.getSubPackage("base")}.BaseResult;
 import ${builderUtil.getSubPackage("dao")}.${builderUtil.getClassName(tableInfo)}DAO;
 import ${builderUtil.getSubPackage("entity")}.PageBean;
 import ${builderUtil.getSubPackage("entity")}.${builderUtil.getClassName(tableInfo)};
-import ${builderUtil.getSubPackage("message")}.${builderUtil.getClassName(tableInfo)}Message;
 import ${builderUtil.getSubPackage("service")}.${builderUtil.getClassName(tableInfo)}Service;
 
 /**
@@ -28,7 +28,7 @@ public class ${builderUtil.getClassName(tableInfo)}ServiceImpl implements ${buil
   private ${builderUtil.getClassName(tableInfo)}DAO ${builderUtil.getTableFieldName(tableInfo)}DAO;
 
   @Override
-  public ${builderUtil.getClassName(tableInfo)}Message queryAll(PageBean pageBean, ${builderUtil.getClassName(tableInfo)} ${builderUtil.getTableFieldName(tableInfo)}) throws Exception {
+  public BaseListResult<${builderUtil.getClassName(tableInfo)}> queryAll(PageBean pageBean, ${builderUtil.getClassName(tableInfo)} ${builderUtil.getTableFieldName(tableInfo)}) throws Exception {
     // 处理分页信息
     if (pageBean == null) {
       pageBean = new PageBean();
@@ -39,7 +39,7 @@ public class ${builderUtil.getClassName(tableInfo)}ServiceImpl implements ${buil
     QueryWrapper<${builderUtil.getClassName(tableInfo)}> wrapper = new QueryWrapper<${builderUtil.getClassName(tableInfo)}>();
     page = ${builderUtil.getTableFieldName(tableInfo)}DAO.selectPage(page, wrapper);
     // 应答消息
-    ${builderUtil.getClassName(tableInfo)}Message message = new ${builderUtil.getClassName(tableInfo)}Message();
+    BaseListResult<${builderUtil.getClassName(tableInfo)}> message = new BaseListResult<${builderUtil.getClassName(tableInfo)}>();
     message.setPage(pageBean.fromIPage(page));
     message.setList(page.getRecords());
     message.setSuccessInfo("");

@@ -10,10 +10,10 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import ${builderUtil.getSubPackage("base")}.BaseDataResult;
+import ${builderUtil.getSubPackage("base")}.BaseListResult;
 import ${builderUtil.getSubPackage("base")}.BaseResult;
 import ${builderUtil.getSubPackage("entity")}.PageBean;
 import ${builderUtil.getSubPackage("entity")}.${builderUtil.getClassName(tableInfo)};
-import ${builderUtil.getSubPackage("message")}.${builderUtil.getClassName(tableInfo)}Message;
 import ${builderUtil.getSubPackage("service")}.${builderUtil.getClassName(tableInfo)}Service;
 
 /**
@@ -32,14 +32,14 @@ public class ${builderUtil.getClassName(tableInfo)}Controller {
   @ApiOperation(value = "查询全部")
   @ApiImplicitParams({ @ApiImplicitParam(name = "pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "pageSize", value = "分页大小", paramType = "query") })
   @PostMapping("/queryAll")
-  public ${builderUtil.getClassName(tableInfo)}Message queryAll(PageBean pageBean, ${builderUtil.getClassName(tableInfo)} ${builderUtil.getTableFieldName(tableInfo)}) throws Exception {
+  public BaseListResult<${builderUtil.getClassName(tableInfo)}> queryAll(PageBean pageBean, ${builderUtil.getClassName(tableInfo)} ${builderUtil.getTableFieldName(tableInfo)}) throws Exception {
     return ${builderUtil.getTableFieldName(tableInfo)}Service.queryAll(pageBean, ${builderUtil.getTableFieldName(tableInfo)});
   }
 
   @ApiOperation(value = "添加")
   @ApiImplicitParams({ 
     <#list tableInfo.columnInfos as col>
-    @ApiImplicitParam(name = "${builderUtil.getColFieldName(col)}", value = "${builderUtil.getColFieldName(col)}", paramType = "query")<#if col_has_next>,</#if>
+    @ApiImplicitParam(name = "${builderUtil.getColFieldName(col)}", value = "${builderUtil.getColFieldName(col)}", paramType = "query", required = true, dataTypeClass = ${builderUtil.getColType(col)}.class)<#if col_has_next>,</#if>
     </#list>
   })
   @PostMapping("/add")
@@ -50,7 +50,7 @@ public class ${builderUtil.getClassName(tableInfo)}Controller {
   @ApiOperation(value = "修改")
   @ApiImplicitParams({ 
     <#list tableInfo.columnInfos as col>
-    @ApiImplicitParam(name = "${builderUtil.getColFieldName(col)}", value = "${builderUtil.getColFieldName(col)}", paramType = "query")<#if col_has_next>,</#if>
+    @ApiImplicitParam(name = "${builderUtil.getColFieldName(col)}", value = "${builderUtil.getColFieldName(col)}", paramType = "query", required = true, dataTypeClass = ${builderUtil.getColType(col)}.class)<#if col_has_next>,</#if>
     </#list>
   })
   @PostMapping("/update")
@@ -61,7 +61,7 @@ public class ${builderUtil.getClassName(tableInfo)}Controller {
   @ApiOperation(value = "删除")
   @ApiImplicitParams({ 
     <#list tableInfo.getPrimaryKeys() as col>
-    @ApiImplicitParam(name = "${builderUtil.getColFieldName(col)}", value = "${builderUtil.getColFieldName(col)}", paramType = "query")<#if col_has_next>,</#if>
+    @ApiImplicitParam(name = "${builderUtil.getColFieldName(col)}", value = "${builderUtil.getColFieldName(col)}", paramType = "query", required = true, dataTypeClass = ${builderUtil.getColType(col)}.class)<#if col_has_next>,</#if>
     </#list>
   })
   @PostMapping("/delete")
@@ -72,7 +72,7 @@ public class ${builderUtil.getClassName(tableInfo)}Controller {
   @ApiOperation(value = "主键查询")
   @ApiImplicitParams({ 
     <#list tableInfo.getPrimaryKeys() as col>
-    @ApiImplicitParam(name = "${builderUtil.getColFieldName(col)}", value = "${builderUtil.getColFieldName(col)}", paramType = "query")<#if col_has_next>,</#if>
+    @ApiImplicitParam(name = "${builderUtil.getColFieldName(col)}", value = "${builderUtil.getColFieldName(col)}", paramType = "query", required = true, dataTypeClass = ${builderUtil.getColType(col)}.class)<#if col_has_next>,</#if>
     </#list>
   })
   @PostMapping("/queryByKey")

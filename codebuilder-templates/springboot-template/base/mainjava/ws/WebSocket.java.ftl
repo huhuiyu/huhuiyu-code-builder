@@ -18,7 +18,6 @@ import org.springframework.stereotype.Component;
 import ${builderUtil.getSubPackage("service")}.WebSocketService;
 import ${builderUtil.getSubPackage("utils")}.ApplicationUtil;
 import ${builderUtil.getSubPackage("utils")}.JsonUtil;
-import ${builderUtil.getSubPackage("ws")}.base.BaseParameter;
 import ${builderUtil.getSubPackage("ws")}.base.BaseProcessor;
 import ${builderUtil.getSubPackage("ws")}.base.BaseWebSocketResult;
 import ${builderUtil.getSubPackage("ws")}.processor.ChatProcessor;

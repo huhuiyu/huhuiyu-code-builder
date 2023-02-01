@@ -22,12 +22,6 @@
     "namePostfix": "DAO",
     "tablesMode": true
   }, {
-    "templatePath": "tables/mainjava/message",
-    "outpath": "src/main/java",
-    "subpackage": "message",
-    "namePostfix": "Message",
-    "tablesMode": true
-  }, {
     "templatePath": "tables/mainjava/service",
     "outpath": "src/main/java",
     "subpackage": "service",

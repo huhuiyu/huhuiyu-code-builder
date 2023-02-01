@@ -15,6 +15,7 @@ jasypt:
 spring:
   # redis连接配置
   redis:
+    database: 3
     host: redis服务器地址
     port: redis服务端口
     password: redis密码
@@ -64,8 +65,10 @@ spring:
     hikari:
       connection-test-query: select 1
       max-lifetime: 60000
-mybatis-plus:
-  config-location: classpath:mybatis-config.xml
+mybatis:
+  type-aliases-package: ${builderUtil.getSubPackage("entity")}
+  configuration:
+    map-underscore-to-camel-case: true
 springfox:
   documentation:
     swagger-ui:
