@@ -1,19 +1,21 @@
 package top.huhuiyu.codebuilder.utils;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import top.huhuiyu.api.dbutils.datasource.DataSourceInfo;
 import top.huhuiyu.api.dbutils.meta.MetaUtilsBean;
 import top.huhuiyu.api.dbutils.meta.TableInfo;
 import top.huhuiyu.api.fileutil.FileUtil;
 import top.huhuiyu.api.freemarker.FreemarkerUtilBean;
 import top.huhuiyu.api.utils.JsonUtils;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import top.huhuiyu.codebuilder.entity.RedisConfig;
 
 /**
  * 代码生成工具
@@ -47,6 +49,7 @@ public class CodeBuilder {
       dataMap.put("baseInfo", builderConfigInfo);
       dataMap.put("builderUtil", builderUtil);
       dataMap.put("dataSourceInfo", dataSourceInfo);
+      dataMap.put("redisConfig", redisConfig);
       // 初始化模板工具
       freemarkerUtilBean = new FreemarkerUtilBean();
       freemarkerUtilBean.setDirectoryForTemplateLoading(templateRootDir);
@@ -138,25 +141,27 @@ public class CodeBuilder {
 
   private DataSourceInfo dataSourceInfo;
   private String configFile;
+  private RedisConfig redisConfig;
 
-  public CodeBuilder(DataSourceInfo dataSourceInfo, String configFile, String schema, BuilderConfigInfo baseConfigInfo) {
+  public CodeBuilder(DataSourceInfo dataSourceInfo, String configFile, String schema, BuilderConfigInfo baseConfigInfo, RedisConfig redisConfig) {
     this.dataSourceInfo = dataSourceInfo;
     this.configFile = configFile;
     this.schema = schema;
     this.baseConfigInfo = baseConfigInfo;
+    this.redisConfig = redisConfig;
     init();
   }
 
   public static CodeBuilder getInstance(DataSourceInfo dataSourceInfo, String configFile) {
-    return new CodeBuilder(dataSourceInfo, configFile, null, null);
+    return new CodeBuilder(dataSourceInfo, configFile, null, null, null);
   }
 
   public static CodeBuilder getInstance(DataSourceInfo dataSourceInfo, String configFile, BuilderConfigInfo baseConfigInfo) {
-    return new CodeBuilder(dataSourceInfo, configFile, null, baseConfigInfo);
+    return new CodeBuilder(dataSourceInfo, configFile, null, baseConfigInfo, null);
   }
 
-  public static CodeBuilder getInstance(DataSourceInfo dataSourceInfo, String configFile, String schema, BuilderConfigInfo baseConfigInfo) {
-    return new CodeBuilder(dataSourceInfo, configFile, schema, baseConfigInfo);
+  public static CodeBuilder getInstance(DataSourceInfo dataSourceInfo, String configFile, String schema, BuilderConfigInfo baseConfigInfo, RedisConfig redisConfig) {
+    return new CodeBuilder(dataSourceInfo, configFile, schema, baseConfigInfo, redisConfig);
   }
 
 }

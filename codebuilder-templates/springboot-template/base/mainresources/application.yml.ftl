@@ -10,15 +10,15 @@ server:
 # 加密密码，线上可以通过--jasypt.encryptor.password=加密密码参数动态配置，避免密码泄露
 jasypt:
   encryptor:
-    password: 加密密码
+    password: huhuiyu
 # spring配置
 spring:
   # redis连接配置
   redis:
-    database: 3
-    host: redis服务器地址
-    port: redis服务端口
-    password: redis密码
+    database: ${redisConfig.database}
+    host: ${redisConfig.host}
+    port: ${redisConfig.port}
+    password: ${redisConfig.password}
     # lettuce
     lettuce:
       pool:

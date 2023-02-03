@@ -31,6 +31,7 @@ import top.huhuiyu.api.dbutils.datasource.DataSourceInfo;
 import top.huhuiyu.api.dbutils.datasource.DriverInfo;
 import top.huhuiyu.api.frame.FrameUtil;
 import top.huhuiyu.api.frame.panel.GridBagPanel;
+import top.huhuiyu.codebuilder.entity.RedisConfig;
 import top.huhuiyu.codebuilder.utils.BuilderConfigInfo;
 import top.huhuiyu.codebuilder.utils.CodeBuilder;
 
@@ -56,6 +57,11 @@ public abstract class BaseSpringBootProjectFrame extends JFrame implements Actio
   private JTextField tfDatabase = new JTextField(30);
   private JFileChooser jfc = new JFileChooser(System.getProperty("user.dir"));
   private JLabel lblError = new JLabel(" ");
+
+  private JTextField tfRedis = new JTextField(30);
+  private JTextField tfRedisHost = new JTextField(30);
+  private JTextField tfRedisPort = new JTextField(30);
+  private JPasswordField tfRedisPwd = new JPasswordField(30);
 
   private JButton btnBuild = new JButton("开始生成");
   private JButton btnBrowser = new JButton("浏览...");
@@ -101,26 +107,23 @@ public abstract class BaseSpringBootProjectFrame extends JFrame implements Actio
   /**
    * 设置默认信息
    * 
-   * @param project     项目名称
-   * @param packageName 基础包名称
-   * @param author      作者
-   * @param ip          数据库ip
-   * @param port        数据库端口
-   * @param username    数据库用户名
-   * @param password    数据库密码
-   * @param database    数据库名称
-   * @param outputDir   项目输出目录
+   * @param parameter TODO
    */
-  public void setDefaultInfo(String project, String packageName, String author, String ip, String port, String username, String password, String database, String outputDir) {
-    tfProjectName.setText(project);
-    tfPackageName.setText(packageName);
-    tfAuthor.setText(author);
-    tfIp.setText(ip);
-    tfPort.setText(port);
-    tfUsername.setText(username);
-    tfPassword.setText(password);
-    tfDatabase.setText(database);
-    tfOutputDir.setText(outputDir);
+  public void setDefaultInfo(DefaultInfoParameter parameter) {
+    tfProjectName.setText(parameter.getProject());
+    tfPackageName.setText(parameter.getPackageName());
+    tfAuthor.setText(parameter.getAuthor());
+    tfIp.setText(parameter.getIp());
+    tfPort.setText(parameter.getPort());
+    tfUsername.setText(parameter.getUsername());
+    tfPassword.setText(parameter.getPassword());
+    tfDatabase.setText(parameter.getDatabase());
+    tfOutputDir.setText(parameter.getOutputDir());
+
+    tfRedis.setText(parameter.getRedisDatabase());
+    tfRedisHost.setText(parameter.getRedisHost());
+    tfRedisPort.setText(parameter.getRedisPort());
+    tfRedisPwd.setText(parameter.getRedisPassword());
   }
 
   private void ui() {
@@ -160,6 +163,18 @@ public abstract class BaseSpringBootProjectFrame extends JFrame implements Actio
     gbp.addComponent(new JLabel("数据库名：", SwingConstants.RIGHT), row, 1);
     gbp.addComponent(tfDatabase, row, 2, 2, 1);
     row++;
+    gbp.addComponent(new JLabel("redis数据库序号：", SwingConstants.RIGHT), row, 1);
+    gbp.addComponent(tfRedis, row, 2, 2, 1);
+    row++;
+    gbp.addComponent(new JLabel("redis数据库ip地址：", SwingConstants.RIGHT), row, 1);
+    gbp.addComponent(tfRedisHost, row, 2, 2, 1);
+    row++;
+    gbp.addComponent(new JLabel("redis数据库端口：", SwingConstants.RIGHT), row, 1);
+    gbp.addComponent(tfRedisPort, row, 2, 2, 1);
+    row++;
+    gbp.addComponent(new JLabel("redis数据库密码：", SwingConstants.RIGHT), row, 1);
+    gbp.addComponent(tfRedisPwd, row, 2, 2, 1);
+    row++;
     gbp.addComponent(btnBuild, row, 1, 3, 1);
     row++;
     gbp.addComponent(lblError, row, 1, 3, 1);
@@ -174,7 +189,8 @@ public abstract class BaseSpringBootProjectFrame extends JFrame implements Actio
     baseConfigInfo.setOutputDir(tfOutputDir.getText().trim());
     baseConfigInfo.setPackageName(tfPackageName.getText().trim());
     baseConfigInfo.setProjectName(tfProjectName.getText().trim());
-    CodeBuilder codeBuilder = CodeBuilder.getInstance(dataSourceInfo, templateConfig, tfSchema.getText().trim(), baseConfigInfo);
+    RedisConfig redisConfig = new RedisConfig(tfRedis.getText(), tfRedisHost.getText(), tfRedisPort.getText(), new String(tfRedisPwd.getPassword()).trim());
+    CodeBuilder codeBuilder = CodeBuilder.getInstance(dataSourceInfo, templateConfig, tfSchema.getText().trim(), baseConfigInfo, redisConfig);
     List<File> files = codeBuilder.build();
     for (File file : files) {
       log.debug(String.format("输出：%s", file));

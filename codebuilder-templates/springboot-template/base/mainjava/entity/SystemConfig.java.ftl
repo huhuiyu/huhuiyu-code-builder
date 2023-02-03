@@ -41,10 +41,6 @@ public class SystemConfig extends BaseEntity {
    */
   private Integer ipBanTimeout = 60;
   /**
-   * 文件上传路径
-   */
-  private String uploadDir = "files/";
-  /**
    * 登录密码最大错误次数
    */
   private Integer loginPasswordErrorLimit = 10;
