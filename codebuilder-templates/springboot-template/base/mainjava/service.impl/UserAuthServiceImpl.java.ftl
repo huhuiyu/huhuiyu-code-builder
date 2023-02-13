@@ -11,6 +11,7 @@ import org.springframework.util.DigestUtils;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
+import lombok.RequiredArgsConstructor;
 import ${builderUtil.getSubPackage("dao")}.TbUserDAO;
 import ${builderUtil.getSubPackage("entity")}.AuthInfo;
 import ${builderUtil.getSubPackage("entity")}.SystemConfig;
@@ -29,14 +30,13 @@ import ${builderUtil.getSubPackage("utils")}.SystemConstants;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class UserAuthServiceImpl implements UserAuthService {
 
   private static final Logger log = LoggerFactory.getLogger(UserAuthServiceImpl.class);
 
-  @Autowired
-  private TbUserDAO tbUserDAO;
-  @Autowired
-  private RedisService redisService;
+  private final TbUserDAO tbUserDAO;
+  private final RedisService redisService;
 
   /**
    * 处理用户信息，不要回传敏感信息

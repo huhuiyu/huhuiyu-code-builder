@@ -21,6 +21,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
+import lombok.RequiredArgsConstructor;
 import ${builderUtil.getSubPackage("base")}.BaseResult;
 import ${builderUtil.getSubPackage("dao")}.TbActionsDAO;
 import ${builderUtil.getSubPackage("entity")}.AuthInfo;
@@ -39,13 +40,12 @@ import ${builderUtil.getSubPackage("utils")}.SystemConstants;
  */
 @Aspect
 @Component
+@RequiredArgsConstructor
 public class ControllerToken implements BaseControllerAop {
 
   private static final Logger log = LoggerFactory.getLogger(ControllerToken.class);
-  @Autowired
-  private RedisService redisService;
-  @Autowired
-  private TbActionsDAO tbActionsDAO;
+  private final RedisService redisService;
+  private final TbActionsDAO tbActionsDAO;
 
   @Around("controller()")
   public Object around(ProceedingJoinPoint pjp) throws Throwable {

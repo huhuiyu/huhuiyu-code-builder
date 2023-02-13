@@ -1,6 +1,5 @@
 package ${builderUtil.getSubPackage("controller")};
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import ${builderUtil.getSubPackage("aop")}.AnnoNoToken;
 import ${builderUtil.getSubPackage("entity")}.TbUser;
 import ${builderUtil.getSubPackage("message")}.UserAuthMessage;
@@ -25,9 +25,10 @@ import ${builderUtil.getSubPackage("validate")}.UserAuthValidate;
 @RestController
 @Api(tags = "用户认证接口")
 @RequestMapping("/user/auth")
+@RequiredArgsConstructor
 public class UserAuthController {
-  @Autowired
-  private UserAuthService userAuthService;
+
+  private final UserAuthService userAuthService;
 
   @ApiOperation(value = "用户登录", notes = "用户登录，需要token信息")
   @ApiImplicitParams({ @ApiImplicitParam(name = "username", value = "登录名", required = true), @ApiImplicitParam(name = "password", value = "登录密码，需要md5加密", required = true) })

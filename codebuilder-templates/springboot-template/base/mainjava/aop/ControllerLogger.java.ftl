@@ -21,7 +21,7 @@ public class ControllerLogger implements BaseControllerAop {
 
   private static final Logger log = LoggerFactory.getLogger(ControllerLogger.class);
 
-    @Before("controller()")
+  @Before("controller()")
   public void before(JoinPoint jp) {
     log.debug("进入===>{}", jp.getSignature());
     Object[] args = jp.getArgs();

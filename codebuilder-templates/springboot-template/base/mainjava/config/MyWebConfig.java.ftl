@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.socket.server.standard.ServerEndpointExporter;
 
+import lombok.RequiredArgsConstructor;
 import ${builderUtil.getSubPackage("aop")}.MyInterceptor;
 
 /**
@@ -17,9 +18,9 @@ import ${builderUtil.getSubPackage("aop")}.MyInterceptor;
  *
  */
 @Configuration
+@RequiredArgsConstructor
 public class MyWebConfig implements WebMvcConfigurer {
-  @Autowired
-  private MyInterceptor myInterceptor;
+  private final MyInterceptor myInterceptor;
 
   @Override
   public void addCorsMappings(CorsRegistry registry) {

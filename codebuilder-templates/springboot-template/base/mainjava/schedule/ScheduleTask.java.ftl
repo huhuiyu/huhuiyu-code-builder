@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
+import lombok.RequiredArgsConstructor;
 import ${builderUtil.getSubPackage("dao")}.UtilDAO;
 import ${builderUtil.getSubPackage("service")}.WebSocketService;
 import ${builderUtil.getSubPackage("ws")}.WebSocket;
@@ -17,12 +17,11 @@ import ${builderUtil.getSubPackage("ws")}.base.BaseWebSocketResult;
  * @author ${baseInfo.author}
  */
 @Component
+@RequiredArgsConstructor
 public class ScheduleTask {
   private static final Logger log = LoggerFactory.getLogger(ScheduleTask.class);
-  @Autowired
-  private WebSocketService webSocketService;
-  @Autowired
-  private UtilDAO utilDAO;
+  private final WebSocketService webSocketService;
+  private final UtilDAO utilDAO;
 
   @Scheduled(initialDelay = 5 * 1000, fixedDelay = 5 * 60 * 1000)
   public void timestamp() {

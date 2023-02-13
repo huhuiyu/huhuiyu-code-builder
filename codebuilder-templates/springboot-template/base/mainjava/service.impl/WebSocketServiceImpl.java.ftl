@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lombok.RequiredArgsConstructor;
 import ${builderUtil.getSubPackage("dao")}.UtilDAO;
 import ${builderUtil.getSubPackage("service")}.WebSocketService;
 import ${builderUtil.getSubPackage("utils")}.JsonUtil;
@@ -24,11 +25,11 @@ import ${builderUtil.getSubPackage("utils")}.JsonUtil;
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class WebSocketServiceImpl implements WebSocketService {
 
   private static final Logger log = LoggerFactory.getLogger(WebSocketServiceImpl.class);
-  @Autowired
-  private UtilDAO utilDAO;
+  private final UtilDAO utilDAO;
 
   private Set<Session> sessions = new HashSet<>();
   private Map<String, Set<Session>> publishes = new HashMap<String, Set<Session>>();

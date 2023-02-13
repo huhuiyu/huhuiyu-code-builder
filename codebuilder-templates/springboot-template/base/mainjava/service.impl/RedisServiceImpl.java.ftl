@@ -9,6 +9,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import lombok.RequiredArgsConstructor;
 import ${builderUtil.getSubPackage("aop")}.AppException;
 import ${builderUtil.getSubPackage("entity")}.RedisTokenInfo;
 import ${builderUtil.getSubPackage("entity")}.SystemConfig;
@@ -25,10 +26,10 @@ import ${builderUtil.getSubPackage("utils")}.SystemConstants;
  *
  */
 @Service
+@RequiredArgsConstructor
 public class RedisServiceImpl implements RedisService {
 
-  @Autowired
-  private StringRedisTemplate stringRedisTemplate;
+  private final StringRedisTemplate stringRedisTemplate;
 
   @Override
   public <T> void saveInfo(String key, T value, Integer timeout) throws Exception {
