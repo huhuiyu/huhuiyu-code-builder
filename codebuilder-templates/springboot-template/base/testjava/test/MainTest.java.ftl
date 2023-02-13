@@ -4,11 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Scanner;
 
+import javax.annotation.Resource;
+
 import org.jasypt.encryption.StringEncryptor;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.DigestUtils;
 
@@ -24,7 +25,7 @@ import ${builderUtil.getSubPackage("base")}.BaseResult;
 public class MainTest {
 
   private static final Logger log = LoggerFactory.getLogger(MainTest.class);
-  @Autowired
+  @Resource
   private StringEncryptor encryptor;
 
   @Test
