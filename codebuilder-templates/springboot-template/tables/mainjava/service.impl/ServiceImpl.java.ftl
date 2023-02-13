@@ -1,6 +1,5 @@
 package ${builderUtil.getSubPackage("service.impl")};
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,6 +7,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
+import lombok.RequiredArgsConstructor;
 import ${builderUtil.getSubPackage("base")}.BaseDataResult;
 import ${builderUtil.getSubPackage("base")}.BaseListResult;
 import ${builderUtil.getSubPackage("base")}.BaseResult;
@@ -23,9 +23,10 @@ import ${builderUtil.getSubPackage("service")}.${builderUtil.getClassName(tableI
  */
 @Service
 @Transactional(rollbackFor = Exception.class)
+@RequiredArgsConstructor
 public class ${builderUtil.getClassName(tableInfo)}ServiceImpl implements ${builderUtil.getClassName(tableInfo)}Service {
-  @Autowired
-  private ${builderUtil.getClassName(tableInfo)}DAO ${builderUtil.getTableFieldName(tableInfo)}DAO;
+
+  private final ${builderUtil.getClassName(tableInfo)}DAO ${builderUtil.getTableFieldName(tableInfo)}DAO;
 
   @Override
   public BaseListResult<${builderUtil.getClassName(tableInfo)}> queryAll(PageBean pageBean, ${builderUtil.getClassName(tableInfo)} ${builderUtil.getTableFieldName(tableInfo)}) throws Exception {

@@ -1,6 +1,5 @@
 package ${builderUtil.getSubPackage("controller")};
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import ${builderUtil.getSubPackage("base")}.BaseDataResult;
 import ${builderUtil.getSubPackage("base")}.BaseListResult;
 import ${builderUtil.getSubPackage("base")}.BaseResult;
@@ -24,10 +24,10 @@ import ${builderUtil.getSubPackage("service")}.${builderUtil.getClassName(tableI
  @Api(tags = { "${builderUtil.getClassName(tableInfo)}" })
 @RestController
 @RequestMapping("/${builderUtil.getClassName(tableInfo)}")
+@RequiredArgsConstructor
 public class ${builderUtil.getClassName(tableInfo)}Controller {
 
-  @Autowired
-  private ${builderUtil.getClassName(tableInfo)}Service ${builderUtil.getTableFieldName(tableInfo)}Service;
+  private final ${builderUtil.getClassName(tableInfo)}Service ${builderUtil.getTableFieldName(tableInfo)}Service;
 
   @ApiOperation(value = "查询全部")
   @ApiImplicitParams({ @ApiImplicitParam(name = "pageNumber", value = "分页页码", paramType = "query"), @ApiImplicitParam(name = "pageSize", value = "分页大小", paramType = "query") })
