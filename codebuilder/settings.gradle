@@ -1,2 +1,4 @@
 rootProject.name = 'codebuilder'
-include('huhuiyu.api','huhuiyu.codebuilder')
+include(':huhuiyu.api', ':huhuiyu.codebuilder')
+project(':huhuiyu.api').projectDir = "$rootDir/huhuiyu.api/" as File
+project(':huhuiyu.codebuilder').projectDir = "$rootDir/huhuiyu.codebuilder/" as File
